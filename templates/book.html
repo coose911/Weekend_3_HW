@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylebook.css') }}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <ul> 
+        <li class="nav-link"><a href="/books">Back to book list</a></li>
+    </ul>
+    <hr>
+    <h1 class="book-information-title">Book Information</h1>
+    <ul class="book-page-books">
+        <li>
+            <p>{{book.title}} -- {{book.author}} -- {{book.genre}} <br> <br>
+                {% if book.checked_in %}
+                <p>Checked In</p>
+                {% endif %}
+                {% if book.checked_out %}
+                <p>Checked Out</p>
+                {% endif %}
+            </p>
+        </li>
+    </ul>
+</body>
+</html>

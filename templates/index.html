@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="booklist-title">Book List</h1>
+
+    <form class="form-inline" action="/books" method="post">
+    <label for="title">Title</label>
+    <input type="text" name="title", id="'title">
+    <label for="author">Author</label>
+    <input type="text" name="author", id="'author">
+    <label for="genre">Genre</label>
+    <input type="text" name="genre", id="'genre">
+    <label for="checked_in">Checked In</label>
+    <input type="checkbox" name="checked_in" id="checked_in">
+    <label for="checked_out">Checked Out</label>
+    <input type="checkbox" name="checked_out" id="checked_out">
+    <input type="submit" value="Add Book">
+    </form>
+<div class = "book container">
+    
+    <div>
+        <ul>
+        {% for book in books %}
+            <li class = "books">
+                <p><a href="books/{{loop.index0}}"> Book Title: {{book.title}}</a></p>
+                <form action="/books/delete/{{ loop.index0 }}" method="POST">
+                    {% if book.checked_in %}
+                    <p>Checked In</p>
+                    {% endif %}
+                    {% if book.checked_out %}
+                    <p>Checked Out</p>
+                    {% endif %}
+                    <input class="button-delete" type="submit" value="Delete">
+                
+            </li>
+            
+        </form>
+        {% endfor %}
+        </ul>
+    </div>
+    
+</div>
+{% endblock %}
